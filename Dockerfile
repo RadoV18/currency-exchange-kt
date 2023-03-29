@@ -1,7 +1,5 @@
 FROM eclipse-temurin:11 as builder
 
-VOLUME C:/logs/tmp
-
 ARG DEPENDENCY=target/dependency
 
 COPY mvnw .
@@ -11,9 +9,11 @@ COPY src src
 
 RUN ./mvnw install -DskipTests
 RUN ./mvnw package -DskipTests
-RUN mkdir -p ${dependency} && cd ${dependency} && jar -xf ../*.jar
+RUN mkdir -p $DEPENDENCY && (cd $DEPENDENCY; jar -xf ../*.jar)
 
 FROM eclipse-temurin:11
+
+VOLUME C:/logs/tmp
 
 ARG DEPENDENCY=target/dependency
 
