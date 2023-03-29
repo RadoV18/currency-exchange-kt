@@ -1,0 +1,227 @@
+21:49:57.805 [main] INFO  u.a.c.CurrencyConverterApplicationKt - Starting CurrencyConverterApplicationKt using Java 11.0.18 on LAPTOP-H57Q0AMV with PID 2360 (D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter\target\classes started by Radomir in D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter)
+21:49:57.809 [main] INFO  u.a.c.CurrencyConverterApplicationKt - No active profile set, falling back to 1 default profile: "default"
+21:49:58.289 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21:49:58.301 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+21:49:59.040 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+21:49:59.047 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+21:49:59.048 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+21:49:59.048 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.73]
+21:49:59.141 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:49:59.141 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1286 ms
+21:49:59.417 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+21:49:59.460 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+21:49:59.561 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+21:49:59.681 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+21:49:59.801 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+21:49:59.810 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21:49:59.847 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+21:50:00.063 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+21:50:00.085 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+21:50:00.094 [main] INFO  u.a.c.CurrencyConverterApplicationKt - Started CurrencyConverterApplicationKt in 2.62 seconds (JVM running for 3.173)
+21:50:35.835 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+21:50:35.835 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+21:50:35.837 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+21:50:35.963 [http-nio-8080-exec-1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'limit' for method parameter type int is not present]
+21:50:57.479 [http-nio-8080-exec-3] INFO  u.a.c.api.ConversionController - GET: 10 exchanges starting from 0
+21:50:57.479 [http-nio-8080-exec-3] INFO  u.a.currencyconverter.bl.CurrencyBl - Starting business logic
+21:50:57.479 [http-nio-8080-exec-3] INFO  u.a.currencyconverter.bl.CurrencyBl - Getting data from database
+21:50:57.485 [http-nio-8080-exec-3] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is kotlin.UninitializedPropertyAccessException: lateinit property currencyRepository has not been initialized] with root cause
+kotlin.UninitializedPropertyAccessException: lateinit property currencyRepository has not been initialized
+	at ucb.arqsoft.currencyconverter.bl.CurrencyBl.getExchangeList(CurrencyBl.kt:116)
+	at ucb.arqsoft.currencyconverter.api.ConversionController.getAllExchanges(ConversionController.kt:52)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+21:53:06.218 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+21:53:18.707 [main] INFO  u.a.c.CurrencyConverterApplicationKt - Starting CurrencyConverterApplicationKt using Java 11.0.18 on LAPTOP-H57Q0AMV with PID 2024 (D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter\target\classes started by Radomir in D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter)
+21:53:18.710 [main] INFO  u.a.c.CurrencyConverterApplicationKt - No active profile set, falling back to 1 default profile: "default"
+21:53:19.127 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21:53:19.137 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 JPA repository interfaces.
+21:53:19.827 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+21:53:19.834 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+21:53:19.835 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+21:53:19.835 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.73]
+21:53:19.907 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:53:19.907 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1148 ms
+21:53:20.140 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+21:53:20.168 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+21:53:20.252 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+21:53:20.359 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+21:53:20.457 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+21:53:20.464 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21:53:20.479 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'conversionController' defined in file [D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter\target\classes\ucb\arqsoft\currencyconverter\api\ConversionController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'currencyBl' defined in file [D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter\target\classes\ucb\arqsoft\currencyconverter\bl\CurrencyBl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'ucb.arqsoft.currencykt.dao.repository.CurrencyRepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+21:53:20.480 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+21:53:20.484 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+21:53:20.493 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+21:53:20.509 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in ucb.arqsoft.currencyconverter.bl.CurrencyBl required a bean of type 'ucb.arqsoft.currencykt.dao.repository.CurrencyRepository' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'ucb.arqsoft.currencykt.dao.repository.CurrencyRepository' in your configuration.
+
+21:53:37.870 [main] INFO  u.a.c.CurrencyConverterApplicationKt - Starting CurrencyConverterApplicationKt using Java 11.0.18 on LAPTOP-H57Q0AMV with PID 29828 (D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter\target\classes started by Radomir in D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter)
+21:53:37.872 [main] INFO  u.a.c.CurrencyConverterApplicationKt - No active profile set, falling back to 1 default profile: "default"
+21:53:38.281 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21:53:38.291 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 JPA repository interfaces.
+21:53:38.989 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+21:53:38.996 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+21:53:38.997 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+21:53:38.997 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.73]
+21:53:39.074 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:53:39.074 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1157 ms
+21:53:39.335 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+21:53:39.362 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+21:53:39.443 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+21:53:39.546 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+21:53:39.652 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+21:53:39.660 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21:53:39.727 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'conversionController' defined in file [D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter\target\classes\ucb\arqsoft\currencyconverter\api\ConversionController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'currencyBl': Unsatisfied dependency expressed through field 'currencyRepository'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'ucb.arqsoft.currencykt.dao.repository.CurrencyRepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+21:53:39.727 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+21:53:39.731 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+21:53:39.739 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+21:53:39.755 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field currencyRepository in ucb.arqsoft.currencyconverter.bl.CurrencyBl required a bean of type 'ucb.arqsoft.currencykt.dao.repository.CurrencyRepository' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'ucb.arqsoft.currencykt.dao.repository.CurrencyRepository' in your configuration.
+
+21:54:51.358 [main] INFO  u.a.c.CurrencyConverterApplicationKt - Starting CurrencyConverterApplicationKt using Java 11.0.18 on LAPTOP-H57Q0AMV with PID 8808 (D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter\target\classes started by Radomir in D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter)
+21:54:51.360 [main] INFO  u.a.c.CurrencyConverterApplicationKt - No active profile set, falling back to 1 default profile: "default"
+21:54:51.795 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21:54:51.805 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 JPA repository interfaces.
+21:54:52.500 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+21:54:52.507 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+21:54:52.508 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+21:54:52.509 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.73]
+21:54:52.589 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:54:52.589 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1183 ms
+21:54:52.831 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+21:54:52.858 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+21:54:52.945 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+21:54:53.050 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+21:54:53.147 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+21:54:53.155 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21:54:53.213 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'conversionController' defined in file [D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter\target\classes\ucb\arqsoft\currencyconverter\api\ConversionController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'currencyBl': Unsatisfied dependency expressed through field 'currencyRepository'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'ucb.arqsoft.currencykt.dao.repository.CurrencyRepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+21:54:53.214 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+21:54:53.218 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+21:54:53.225 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+21:54:53.242 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field currencyRepository in ucb.arqsoft.currencyconverter.bl.CurrencyBl required a bean of type 'ucb.arqsoft.currencykt.dao.repository.CurrencyRepository' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'ucb.arqsoft.currencykt.dao.repository.CurrencyRepository' in your configuration.
+
+22:04:19.497 [main] INFO  u.a.c.CurrencyConverterApplicationKt - Starting CurrencyConverterApplicationKt using Java 11.0.18 on LAPTOP-H57Q0AMV with PID 17604 (D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter\target\classes started by Radomir in D:\2023\UCB 1-2023\Arquitectura de Software\practicas\Practica-Parcial1\currency-converter)
+22:04:19.500 [main] INFO  u.a.c.CurrencyConverterApplicationKt - No active profile set, falling back to 1 default profile: "default"
+22:04:20.035 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+22:04:20.067 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 26 ms. Found 1 JPA repository interfaces.
+22:04:20.800 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+22:04:20.809 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+22:04:20.810 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:04:20.810 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.73]
+22:04:20.900 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:04:20.900 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1349 ms
+22:04:21.187 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+22:04:21.230 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+22:04:21.331 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+22:04:21.462 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+22:04:21.706 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+22:04:21.713 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+22:04:22.067 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+22:04:22.276 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+22:04:22.292 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+22:04:22.299 [main] INFO  u.a.c.CurrencyConverterApplicationKt - Started CurrencyConverterApplicationKt in 3.131 seconds (JVM running for 3.665)
+22:04:25.130 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22:04:25.131 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22:04:25.132 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+22:04:25.171 [http-nio-8080-exec-1] INFO  u.a.c.api.ConversionController - GET: 10 exchanges starting from 0
+22:04:25.172 [http-nio-8080-exec-1] INFO  u.a.currencyconverter.bl.CurrencyBl - Starting business logic
+22:04:25.172 [http-nio-8080-exec-1] INFO  u.a.currencyconverter.bl.CurrencyBl - Getting data from database
+22:04:25.425 [http-nio-8080-exec-1] INFO  u.a.c.api.ConversionController - Sending response
+22:04:50.818 [http-nio-8080-exec-4] INFO  u.a.c.api.ConversionController - GET: Exchange 1500 from BOB to USD
+22:04:50.818 [http-nio-8080-exec-4] INFO  u.a.c.api.ConversionController - Starting business logic
+22:04:50.937 [http-nio-8080-exec-4] INFO  u.a.currencyconverter.bl.CurrencyBl - Calling external service
+22:04:51.806 [http-nio-8080-exec-4] INFO  u.a.currencyconverter.bl.CurrencyBl - Parsing response
+22:04:51.842 [http-nio-8080-exec-4] INFO  u.a.currencyconverter.bl.CurrencyBl - Saving response in database
+22:04:51.933 [http-nio-8080-exec-4] INFO  u.a.currencyconverter.bl.CurrencyBl - Response saved.
+22:12:36.920 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
