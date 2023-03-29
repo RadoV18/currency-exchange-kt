@@ -1,0 +1,9 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  datasource:
+    type: org.postgresql.jdbc2.optional.SimpleDataSource
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:mysecretpassword}
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/software}
