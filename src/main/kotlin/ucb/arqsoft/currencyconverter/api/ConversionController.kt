@@ -3,6 +3,7 @@ package ucb.arqsoft.currencyconverter.api
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -43,13 +44,13 @@ class ConversionController @Autowired constructor(
 
     @GetMapping("/all")
     fun getAllExchanges(
-        @RequestParam limit: Int,
-        @RequestParam offset: Int,
+        @RequestParam page: Int,
+        @RequestParam size: Int,
         @RequestParam requestParams: Map<String, String>
-    ): ResponseEntity<ResponseDto<PaginatedDto<ExchangeDto>>> {
-        logger.info("GET: $limit exchanges starting from $offset");
-        val paginatedExchangeDto: PaginatedDto<ExchangeDto> =
-            currencyBl.getExchangeList(limit, offset, requestParams);
+    ): ResponseEntity<ResponseDto<Page<ExchangeDto>>> {
+        logger.info("GET: getting page $page with $size");
+        val paginatedExchangeDto: Page<ExchangeDto> =
+            currencyBl.getExchangeList(page, size, requestParams);
         logger.info("Sending response");
         return ResponseEntity.ok(
             ResponseDto(

@@ -7,6 +7,10 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Sort
+import org.springframework.data.jpa.domain.Specification
 import org.springframework.stereotype.Service
 import ucb.arqsoft.currencyconverter.dao.Currency
 import ucb.arqsoft.currencyconverter.dao.repository.CurrencyRepository
@@ -79,45 +83,49 @@ class CurrencyBl {
     }
 
     fun getExchangeList(
-        limit: Int,
-        offset: Int,
+        page: Int,
+        size: Int,
         query: Map<String, String>
-    ): PaginatedDto<ExchangeDto> {
+    ): Page<ExchangeDto> {
         logger.info("Starting business logic");
-        if(limit <= 0 || offset < 0) {
-            logger.error("Invalid limit or offset");
+        if(page < 0 || size <= 0) {
+            logger.error("Limit must be greater than zero and offset must be greater or equal than zero");
             throw IllegalArgumentException("Limit must be greater than zero and offset must be greater or equal than zero");
         }
-        // data validation of query
-        val from: String? = query["from"];
-        val to: String? = query["to"];
-        val sortBy = query["sortBy"];
-        val sortDirection = query["sortDirection"];
-        if(from != null && from.length != 3) {
-            logger.error("Invalid from currency");
-            throw IllegalArgumentException("Invalid from currency");
+        var spec = Specification.where<Currency>(null);
+
+        for((key, value) in query) {
+            if(value != null) {
+                var filterName : String? = null;
+                if(key == "from") {
+                    filterName = "currencyFrom";
+                } else if(key == "to") {
+                    filterName = "currencyTo";
+                }
+                if(filterName != null) {
+                    val filter = Specification<Currency> { root, _, criteriaBuilder ->
+                        criteriaBuilder.equal(root.get<String>(filterName), value)
+                    }
+                    spec = spec.and(filter);
+                }
+            }
         }
-        if(to != null && to.length != 3) {
-            logger.error("Invalid to currency");
-            throw IllegalArgumentException("Invalid to currency");
+        var sort : Sort? = null;
+        if(query.containsKey("sortBy")) {
+            val sortBy = query["sortBy"];
+            var sortOrder = query["sortOrder"];
+            if(sortOrder == null) {
+                sortOrder = "asc";
+            }
+            sort = Sort.by(Sort.Direction.fromString(sortOrder), sortBy);
         }
-        if(sortBy != null && sortBy != "amount" && sortBy != "result" && sortBy != "requestDate") {
-            logger.error("Invalid sortBy");
-            throw IllegalArgumentException("Invalid sortBy");
+        if(sort == null) {
+            sort = Sort.by(Sort.Direction.ASC, "requestDate");
         }
-        if(sortDirection != null && sortDirection != "asc" && sortDirection != "desc") {
-            logger.error("Invalid sortDirection");
-            throw IllegalArgumentException("Invalid sortDirection");
-        }
-        // check if there are query parameters
-        var hasQueryParameters = false;
-        if(query.size > 2) {
-            hasQueryParameters = true;
-        }
-        logger.info("Getting data from database");
-        val exchangeList = currencyRepository
-            .findAllWithLimitAndOffset(limit, offset, from, to, sortBy, sortDirection);
-        val exchangeDtoList = exchangeList.map {
+        val pageable = PageRequest.of(page, size, sort);
+        logger.info(pageable.toString());
+        logger.info(sort.toString());
+        return currencyRepository.findAll(spec, pageable).map {
             ExchangeDto(
                 query = QueryDto(
                     from = it.currencyFrom,
@@ -130,12 +138,5 @@ class CurrencyBl {
                 result = it.result
             )
         }
-        val total = if(hasQueryParameters) exchangeList.size.toLong() else currencyRepository.count();
-        return PaginatedDto(
-            data = exchangeDtoList,
-            total = total,
-            limit = limit,
-            offset = offset
-        )
     }
 }

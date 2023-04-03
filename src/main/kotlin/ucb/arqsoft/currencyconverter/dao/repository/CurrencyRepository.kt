@@ -1,12 +1,18 @@
 package ucb.arqsoft.currencyconverter.dao.repository
 
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.jpa.domain.Specification
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.CrudRepository
+import org.springframework.data.repository.PagingAndSortingRepository
 import org.springframework.data.repository.query.Param
 import ucb.arqsoft.currencyconverter.dao.Currency
 
-interface CurrencyRepository: CrudRepository<Currency, Long> {
+interface CurrencyRepository: PagingAndSortingRepository<Currency, Long> {
     override fun <S : Currency> save(entity: S): S
+
+    fun findAll(spec: Specification<Currency>, pageable: Pageable): Page<Currency>
 
     @Query("""
         SELECT * FROM currency c
