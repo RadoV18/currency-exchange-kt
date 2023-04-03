@@ -25,13 +25,14 @@ class ConversionController @Autowired constructor(
 
     @GetMapping
     fun getConversion(
+        @RequestParam serviceId: Int,
         @RequestParam from: String,
         @RequestParam to: String,
         @RequestParam amount: BigDecimal
     ): ResponseEntity<ResponseDto<ExchangeDto>> {
         logger.info("GET: Exchange $amount from $from to $to");
         logger.info("Starting business logic");
-        val exchangeDto = currencyBl.exchangeRate(amount, from, to);
+        val exchangeDto = currencyBl.exchangeRate(serviceId, amount, from, to);
 
         return ResponseEntity.ok(
             ResponseDto(

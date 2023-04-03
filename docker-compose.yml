@@ -28,7 +28,9 @@ services:
       DB_URL: ${POSTGRES_URL}
       DB_USERNAME: postgres
       DB_PASSWORD: mysecretpassword
+      KEYCLOAK_AUTH_SERVER_URL: http://host.docker.internal:8081
       API_KEY: ${API_KEY}
+      EXCHANGE_RATE_KEY: ${EXCHANGE_RATE_KEY}
       PORT: 8080
     volumes:
       - C:/logs/currency-converter:/logs
@@ -39,7 +41,7 @@ services:
       - postgres-currency
     restart: always
   angular-frontend:
-    image: angular-currency:1.0.1
+    image: angular-currency:1.0.2
     ports:
       - "4200:80"
     volumes:

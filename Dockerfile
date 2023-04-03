@@ -25,6 +25,7 @@ ENV DB_USERNAME="postgres"
 ENV DB_PASSWORD="mysecretpassword"
 ENV DB_URL="jdbc:postgresql://localhost:5433/software"
 ENV API_KEY=""
+ENV EXCHANGE_RATE_KEY=""
 ENV PORT=8080
 
 ENTRYPOINT ["java","-cp","app:app/lib/*","ucb.arqsoft.currencyconverter.CurrencyConverterApplicationKt"]

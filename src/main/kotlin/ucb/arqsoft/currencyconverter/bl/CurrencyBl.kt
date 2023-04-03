@@ -7,6 +7,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.ApplicationContext
+import org.springframework.core.convert.ConversionService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
@@ -19,6 +21,9 @@ import ucb.arqsoft.currencyconverter.dto.InfoDto
 import ucb.arqsoft.currencyconverter.dto.PaginatedDto
 import ucb.arqsoft.currencyconverter.dto.QueryDto
 import ucb.arqsoft.currencyconverter.exception.ServiceException
+import ucb.arqsoft.currencyconverter.strategies.ApiLayerConversion
+import ucb.arqsoft.currencyconverter.strategies.ConversionStrategy
+import ucb.arqsoft.currencyconverter.strategies.ExchangeRateApiConversion
 import java.math.BigDecimal
 import java.sql.Timestamp
 import java.util.*
@@ -26,60 +31,37 @@ import java.util.*
 @Service
 class CurrencyBl {
 
-    @Value("\${api.key}")
-    private lateinit var apiKey: String;
     private val logger: Logger = LoggerFactory.getLogger(CurrencyBl::class.java)
     @Autowired
     private lateinit var currencyRepository : CurrencyRepository;
+    @Autowired
+    private lateinit var applicationContext: ApplicationContext;
+    private var conversionStrategy: ConversionStrategy? = null;
 
-    fun exchangeRate(amount: BigDecimal, from: String, to: String): ExchangeDto {
+    fun exchangeRate(serviceId: Int, amount: BigDecimal, from: String, to: String): ExchangeDto {
         if(amount < BigDecimal.ZERO) {
             logger.error("Amount must be greater than zero");
             throw IllegalArgumentException("Amount must be greater than zero");
         }
-
-        val client = OkHttpClient();
-
-        val request: Request = Request.Builder()
-            .url(
-                "https://api.apilayer.com/exchangerates_data/convert?" +
-                        "to=$to" +
-                        "&from=$from" +
-                        "&amount=$amount"
-            )
-            .addHeader("apikey", apiKey)
-            .build();
-
-        try {
-            logger.info("Calling external service");
-            val response = client.newCall(request).execute();
-
-            if(!response.isSuccessful) {
-                logger.info("Unsuccessful response from external service");
-                throw Exception("Error calling external service");
-            }
-
-            logger.info("Parsing response");
-            val body = response.body?.string();
-            val objectMapper = jacksonObjectMapper();
-            val dto = objectMapper.readValue(body, ExchangeDto::class.java);
-            // change timestamp to milliseconds
-            dto.info.timestamp *= 1000;
-
-            val currency = Currency(
-                currencyFrom = from,
-                currencyTo = to,
-                amount = amount,
-                result = dto.result,
-                requestDate = Timestamp(dto.info.timestamp)
-            )
-            logger.info("Saving response in database");
-            currencyRepository.save(currency);
-            logger.info("Response saved.");
-            return dto;
-        } catch (e: Exception) {
-            throw ServiceException("Error calling external service");
+        conversionStrategy = when(serviceId) {
+            1 -> applicationContext.getBean(ApiLayerConversion::class.java)
+            2 -> applicationContext.getBean(ExchangeRateApiConversion::class.java)
+            else -> null;
         }
+        if(conversionStrategy == null) {
+            logger.error("Service not found");
+            throw IllegalArgumentException("Service not found");
+        }
+        val exchangeDto = conversionStrategy!!.exchangeCurrency(amount, from, to);
+        val currency = Currency(
+            currencyFrom = from,
+            currencyTo = to,
+            amount = amount,
+            result = exchangeDto.result,
+            requestDate = Timestamp(exchangeDto.info.timestamp)
+        )
+        currencyRepository.save(currency);
+        return exchangeDto;
     }
 
     fun getExchangeList(

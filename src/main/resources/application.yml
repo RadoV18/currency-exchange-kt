@@ -13,16 +13,19 @@ spring:
         ddl-auto: update
 
 api:
-    key: ${API_KEY:myapikey}
+  key: ${API_KEY:myapikey}
+
+exchangerate:
+  key: ${EXCHANGE_RATE_KEY:myapikey}
 
 keycloak:
-  auth-server-url: http://localhost:8081/
+  auth-server-url: ${KEYCLOAK_AUTH_SERVER_URL:http://localhost:8081/}
   autodetect-bearer-only: true
   credentials:
     secret: 4R4pdQ2gf28nh9ZFDUCNjFh9jSd8aUVQ
   realm: software
   resource: backend
-  ssl-required: external
+  ssl-required: none
   use-resource-role-mappings: false
   security-constraints:
     - auth-roles:

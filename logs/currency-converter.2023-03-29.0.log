@@ -1,0 +1,13 @@
+01:08:25.524 [http-nio-8080-exec-4] INFO  u.a.c.api.ConversionController - GET: 10 exchanges starting from 0
+01:08:27.609 [http-nio-8080-exec-4] INFO  u.a.currencyconverter.bl.CurrencyBl - Starting business logic
+01:08:27.610 [http-nio-8080-exec-4] INFO  u.a.currencyconverter.bl.CurrencyBl - Getting data from database
+01:08:27.914 [http-nio-8080-exec-4] INFO  u.a.c.api.ConversionController - Sending response
+01:11:55.435 [http-nio-8080-exec-7] INFO  u.a.c.api.ConversionController - GET: 10 exchanges starting from 0
+01:11:55.436 [http-nio-8080-exec-7] INFO  u.a.currencyconverter.bl.CurrencyBl - Starting business logic
+01:11:55.437 [http-nio-8080-exec-7] INFO  u.a.currencyconverter.bl.CurrencyBl - Getting data from database
+01:11:55.507 [http-nio-8080-exec-7] INFO  u.a.c.api.ConversionController - Sending response
+01:11:58.983 [http-nio-8080-exec-8] INFO  u.a.c.api.ConversionController - GET: 10 exchanges starting from 0
+01:11:58.985 [http-nio-8080-exec-8] INFO  u.a.currencyconverter.bl.CurrencyBl - Starting business logic
+01:11:58.985 [http-nio-8080-exec-8] INFO  u.a.currencyconverter.bl.CurrencyBl - Getting data from database
+01:11:59.049 [http-nio-8080-exec-8] INFO  u.a.c.api.ConversionController - Sending response
+01:24:33.265 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
