@@ -40,7 +40,7 @@ class ExchangeRateApiConversion : ConversionStrategy {
 
             logger.info("Parsing response");
             val body = response.body!!.string();
-            logger.info("Response: $body");
+//            logger.info("Response: $body");
             return toExchangeDto(body);
         } catch (e: Exception) {
             throw ServiceException("Error calling ExchangeRate-Api");
@@ -58,7 +58,7 @@ class ExchangeRateApiConversion : ConversionStrategy {
                     amount = this.amount
                 ),
                 info = InfoDto(
-                    timestamp = dto.timeLastUpdateUnix,
+                    timestamp = dto.timeLastUpdateUnix * 1000,
                 ),
                 result = dto.conversionResult
             );
